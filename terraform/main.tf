@@ -11,7 +11,7 @@ module "app" {
   zone             = "${var.zone}"
   app_disk_image   = "${var.app_disk_image}"
   mongo_ext_ip     = "${module.db.db_external_ip}"
-  deploy           = "false"
+  deploy           = "true"
 }
 
 module "db" {
@@ -24,5 +24,5 @@ module "db" {
 
 module "vpc" {
   source        = "../modules/vpc"
-  source_ranges = ["37.110.38.27/32"]
+  source_ranges = ["0.0.0.0/0"]
 }

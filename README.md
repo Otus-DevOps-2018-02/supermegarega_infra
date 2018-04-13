@@ -122,3 +122,18 @@ ansible/inventory.yml - Inventory YAML
 ansible/inventory.json - Inventory JSON
 ansible/inventory.sh - Bash script for dinamic inventory
 ansible/clone.yml - Playbook clone repo
+
+#Homework-10 Деплой и управление конфигурацией с Ansible
+
+ansible/reddit_app_one_play.yml - One play
+ansible/reddit_app_multiple_plays.yml - Multiple play
+ansible/packer_app.yml - Packer App play
+ansible/packer_db.yml - Packer DB play
+ansible/gce.py - GCP dinamic inventory
+ansible/gce.ini.example - ini for gce.py
+ansible/app.yml - App play
+ansible/db.yml - DB play
+ansible/deploy.yml - Puma play
+ansible/site.yml - app,db,deploy in one play
+ansible/templates/db_config.j2 - Template DB url
+ansible/templates/mongod.conf.j2 - Template mongo

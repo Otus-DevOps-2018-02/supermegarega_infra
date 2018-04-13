@@ -11,7 +11,7 @@ module "app" {
   zone             = "${var.zone}"
   app_disk_image   = "${var.app_disk_image}"
   mongo_ext_ip     = "${module.db.db_external_ip}"
-  deploy           = "true"
+  deploy           = "false"
 }
 
 module "db" {
