@@ -2,8 +2,29 @@ dist: trusty
 sudo: required
 language: bash
 before_install:
-- curl https://raw.githubusercontent.com/express42/otus-homeworks/2018-02/run.sh |
-  bash
+  - curl https://raw.githubusercontent.com/express42/otus-homeworks/2018-02/run.sh | bash
+  - touch ~/.ssh/appuser.pub && touch ~/.ssh/appuser
+  - sudo pip install ansible
+  - sudo pip install ansible-lint
+  - wget https://github.com/wata727/tflint/releases/download/v0.5.4/tflint_linux_amd64.zip -P /tmp/
+  - unzip /tmp/tflint_linux_amd64.zip -d /tmp/
+  - sudo mv /tmp/tflint /usr/sbin/tflint
+  - find packer -type f -name '*.json' -exec packer validate -var 'project_id=infra-198011' -var 'source_image_family=ubuntu-1604-lts' {} \;
+  - wget https://releases.hashicorp.com/terraform/0.11.5/terraform_0.11.5_linux_amd64.zip -P /tmp/
+  - unzip /tmp/terraform_0.11.5_linux_amd64.zip -d /tmp
+  - sudo  mv /tmp/terraform /usr/sbin/terraform
+  - cd terraform/prod/
+  - terraform init -backend=false 
+  - terraform validate -var-file=terraform.tfvars.example
+  - tflint --var-file=terraform.tfvars.example
+  - cd -
+  - cd terraform/stage/ 
+  - terraform init -backend=false 
+  - terraform validate --var-file=terraform.tfvars.example
+  - tflint --var-file=terraform.tfvars.example
+  - cd -
+  - cd ansible/
+  - ansible-lint playbooks/site.yml --exclude=roles/jdauphant.nginx
 notifications:
   slack:
     secure: lu+N0zJJOkhteu+/+TLhAj6jArzZAtxjdiGazazRPS8r5JTBHV0A4hj7AV5kupdwvDtNqZ4xJlwjL+xd65Qd8RhMHAHOIjxl0nEWjWuxQX8N1PfjKV3LvnTxPBRPQ1kBUQ6KvcfhS9mkZPFQBgXcPiQz1FBnhgt+1Vz9ZsCbqbMvqPJ0lu3ezcJdPr7D0Qc9AEY8TcvEtG3UnuotJ16IxT7UAMG9JmF6XOW4b3nXm9oIgkNfA6CNm/ExgNKt6lBsnssePBzoytvJMv/L6tmOZ+jmPFqqrdb4sfrurbZBDOVilz+oyQF+qkgdoCWbQpRIQqxL62A8Wq1WTiZAR6BkhSSn7ttQV7MMq3V5Hfi1rPapLJ8RYNFtbfL0/Mrz8QSQ/HTyr0j2aSoHoLisdcZhYkbphx1VSCm5I4dvRhR+aR7n2bpmVyEe6E6OUXW6XSjqSnwcLqxOperkPCx3xcnWF4YdU2o+/N0Md7/3GDtnD7Bk53gwh1Cb1UqMqtB4j77iACBoz+R54wlhOKCiJdfm7kMu+KroRG4Sn5UCdXzy8NIbRQjSeqwmsXuQITZPt57VU1ZKybbGp386uRXyTp8Nvzo/4RjY7V8ZwmZc6S6pc9hjaG+cJ43myy9RgZSVGJxIylaxJiavmdPDVPmx/bA3Hysp5gitHLaEmR4j58zD8kQ=
