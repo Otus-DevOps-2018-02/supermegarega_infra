@@ -140,6 +140,8 @@ ansible/templates/mongod.conf.j2 - Template mongo
 
 #Homework-11 Ansible: работа с ролями и окружениями
 
+# Trytravis build -  https://travis-ci.org/supermegarega/trytravis
+
 ansible/environments/prod/ - Prod environment
 ansible/environments/stage/ - Stage environment
 ansible/roles/app/ - App role
