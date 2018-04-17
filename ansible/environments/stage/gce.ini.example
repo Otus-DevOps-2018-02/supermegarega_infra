@@ -1,0 +1,15 @@
+[gce]
+libcloud_secrets =
+
+gce_service_account_email_address = changeme
+gce_service_account_pem_file_path = ~/path/changeme.json
+gce_project_id = changeme
+gce_zone =
+
+[inventory]
+inventory_ip_type =
+
+[cache]
+cache_path = ~/.ansible/tmp
+
+cache_max_age = 300
