@@ -137,3 +137,14 @@ ansible/deploy.yml - Puma play
 ansible/site.yml - app,db,deploy in one play
 ansible/templates/db_config.j2 - Template DB url
 ansible/templates/mongod.conf.j2 - Template mongo
+
+#Homework-11 Ansible: работа с ролями и окружениями
+
+# Trytravis build -  https://travis-ci.org/supermegarega/trytravis
+
+ansible/environments/prod/ - Prod environment
+ansible/environments/stage/ - Stage environment
+ansible/roles/app/ - App role
+ansible/roles/db/ - DB role
+ansible/roles/jdauphant.nginx/ - Nginx role
+ansible/vault.key - Key
