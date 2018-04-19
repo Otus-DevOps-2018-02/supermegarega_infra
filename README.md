@@ -149,3 +149,9 @@ ansible/roles/db/ - DB role
 ansible/roles/jdauphant.nginx/ - Nginx role
 ansible/vault.key - Key
 
+#Homework-12 Разработка и тестирование Ansible ролей и плейбуков
+
+[![Build Status](https://travis-ci.org/Otus-DevOps-2018-02/supermegarega_infra.svg?branch=master)](https://travis-ci.org/Otus-DevOps-2018-02/supermegarega_infra)
+
+ansible/Vagrantfile - Vagrant config
+
